@@ -3,7 +3,7 @@ from tensorflow.keras.models import load_model
 import matplotlib.pyplot as plt
 _, (x_test, y_test) = mnist.load_data()
 x_test = x_test / 255.0
-model = load_model('mnist_model.keras')
+model = load_model('./models/mnist_model.keras')
 model.summary()
 model.evaluate(x_test, y_test, verbose = 2)
 

@@ -22,7 +22,7 @@ model.compile(loss = 'sparse_categorical_crossentropy', optimizer='sgd', metrics
 hist = model.fit(train_ds, validation_data = val_ds, epochs=10) # 10번 학습( 너무 크면 오버피팅 발생)
 model.evaluate (x_test, y_test) # 검증 데이터셋으로 성능 평가
 model.summary() # 출력
-model.save('mnist_model.keras')
+model.save('./models/mnist_model.keras')
 
 fig, loss_ax = plt.subplots()
 acc_ax = loss_ax.twinx()
