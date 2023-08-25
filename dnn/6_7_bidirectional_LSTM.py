@@ -24,13 +24,9 @@ for epoch in range(1000):
     X, y = get_sequence(n_timesteps)
     model.fit(X, y, epochs = 1, batch_size = 1, verbose = 2)
 
-
+X, y = get_sequence(n_timesteps)
 y_pred = model.predict(X, verbose=0)
 yhat = (y_pred > 0.5).astype(int)
 
 for i in range(n_timesteps):
-    print('실제 값: {}, 예측 값: {}'.format(y[0, i], yhat[0, i]))
-
-#X, y = model.predict(X, verbose = 0)
-#for i in range(n_timesteps):
-#    print('실제 값: {}, 예측 값: {}'.format(y[0, i], yhat[0, i]))
+    print('실제 값: {}, 예측 값: {}'.format(y[0][i], yhat[0][i]))
