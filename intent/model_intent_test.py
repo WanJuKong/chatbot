@@ -3,14 +3,14 @@
 from Preprocess import Preprocess
 from IntentModel import IntentModel
 
-p = Preprocess('chatbot_dict.bin', 'user_dic.tsv')
+p = Preprocess('./data/chatbot_dict.bin', './data/user_dic.tsv')
 intent = IntentModel('./models/intent_model.keras', p)
+
 query = input(':')
-
-predict = intent.predict_class(query)
-predict_label = intent.labels[predict]
-
-print(query)
-
-print('class: ', predict)
-print('lable: ', predict_label)
+while query != 'e':
+    predict = intent.predict_class(query)
+    predict_label = intent.labels[predict]
+    print(query)
+    print(intent.class_probabilities(query))
+    print('class: {}\nlable: {}\n\n'.format(predict, predict_label))
+    query = input(':')

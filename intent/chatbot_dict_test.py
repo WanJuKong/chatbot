@@ -2,7 +2,7 @@
 
 import pickle
 from Preprocess import Preprocess
-f = open('chatbot_dict.bin', 'rb')
+f = open('./data/chatbot_dict.bin', 'rb')
 word_index = pickle.load(f)
 f.close()
 

@@ -6,13 +6,13 @@ from tensorflow.keras import preprocessing
 from tensorflow.keras.models import Model
 from tensorflow.keras.layers import  Input, Embedding, Dense, Dropout, Conv1D, GlobalMaxPool1D, concatenate
 
-train_file = '../data/total_train_data.csv'
+train_file = './data/total_train_data.csv'
 data = pd.read_csv(train_file, delimiter=',')
 queries = data['query'].tolist()
 intents = data['intent'].tolist()
 
 from Preprocess import Preprocess
-p = Preprocess(word2index_dic = '../chatbot_dict.bin', userdic = '../user_dic.tsv')
+p = Preprocess(word2index_dic = './data/chatbot_dict.bin', userdic = './data/user_dic.tsv')
 
 sequences = []
 for sentence in queries:
@@ -71,4 +71,4 @@ loss, accuracy = model.evaluate(test_ds, verbose = 1)
 print('Accuracy: {}%'.format(accuracy * 100))
 print('loss: {}%'.format(loss * 100))
 
-model.save('../models/intent_model.keras')
+model.save('./models/intent_model.keras')

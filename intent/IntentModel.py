@@ -23,4 +23,17 @@ class IntentModel:
         predict = self.model.predict(padded_seqs)
         predict_class = tf.math.argmax(predict, axis=1)
         return predict_class.numpy()[0]
+    
+    def class_probabilities(self, query):
+        pos = self.p.pos(query)
+        
+        MAX_SEQ_LEN=15
 
+        keywords = self.p.get_keywords(pos, without_tag = True)
+        sequences = [self.p.get_wordidx_sequence(keywords)]
+
+        padded_seqs = preprocessing.sequence.pad_sequences(sequences, maxlen=MAX_SEQ_LEN, padding='post')
+
+        predict = self.model.predict(padded_seqs)
+        class_probabilities = tf.math.softmax(predict[0])
+        return class_probabilities.numpy().tolist()
